@@ -3,14 +3,14 @@ package MediatorPattern;
 import java.util.ArrayList;
 import java.util.List;
 
-// Subject interface
+// Subject interface (Publisher)
 interface Subject {
     void attach(Observer observer);
     void detach(Observer observer);
     void notifyObservers();
 }
 
-// Concrete subject
+// Concrete subject (Concrete Publisher)
 class ConcreteSubject implements Subject {
     private List<Observer> observers = new ArrayList<>();
     private String state;
@@ -34,7 +34,7 @@ class ConcreteSubject implements Subject {
     public void detach(Observer observer) {
         observers.remove(observer);
     }
-
+ 
     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
@@ -43,12 +43,12 @@ class ConcreteSubject implements Subject {
     }
 }
 
-// Observer interface
+// Observer interface (Subscriber)
 interface Observer {
     void update();
 }
 
-// Concrete observer
+// Concrete observer (Concrete Subscriber)
 class ConcreteObserver implements Observer {
     private String observerState;
     private ConcreteSubject subject;
